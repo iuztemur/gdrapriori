@@ -13,8 +13,7 @@ public class Labels {
     private final Map<String, Integer> conditionalValues = new TreeMap<String, Integer>();
     private final Map<String, Integer> decisionValues = new TreeMap<String, Integer>();
 
-    // in case reverse translation comes in necessary,
-    // use either commons-collections' BidiMap or guava's BiMap
+    // in case reverse translation comes in necessary, use guava's BiMap
 
     public Labels(String[] labels) {
         readConditionalValues(labels);
@@ -66,4 +65,7 @@ public class Labels {
 
         return value;
     }
+
+    public int conditionalValueMax() { return conditionalValues.size(); }
+
 }
