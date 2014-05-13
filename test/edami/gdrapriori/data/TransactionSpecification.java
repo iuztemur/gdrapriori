@@ -41,14 +41,14 @@ public class TransactionSpecification {
         }
         Labels labels = new Labels(reader.getLabels());
 
-        int[] first = new Transaction(labels, reader.getRecords().get(0)).getConditionalValues();
+        Transaction first = new Transaction(labels, reader.getRecords().get(0));
         int[] expectedFirst = new int[]{3};
-        assertArrayEquals(expectedFirst, first);
+        assertArrayEquals(expectedFirst, first.getConditionalValues());
 
         int lastIndex = reader.getRecords().size() - 1;
-        int[] last = new Transaction(labels, reader.getRecords().get(lastIndex)).getConditionalValues();
+        Transaction last = new Transaction(labels, reader.getRecords().get(lastIndex));
         int[] expectedLast = new int[]{2, 3, 4};
-        assertArrayEquals(expectedLast, last);
+        assertArrayEquals(expectedLast, last.getConditionalValues());
     }
 
     @Test
@@ -61,13 +61,13 @@ public class TransactionSpecification {
         }
         Labels labels = new Labels(reader.getLabels());
 
-        int first = new Transaction(labels, reader.getRecords().get(0)).getDecisionValue();
+        Transaction first = new Transaction(labels, reader.getRecords().get(0));
         int expectedFirst = 1;
-        assertEquals(expectedFirst, first);
+        assertEquals(expectedFirst, first.getDecisionValue());
 
         int lastIndex = reader.getRecords().size() - 1;
-        int last = new Transaction(labels, reader.getRecords().get(lastIndex)).getDecisionValue();
+        Transaction last = new Transaction(labels, reader.getRecords().get(lastIndex));
         int expectedLast = 2;
-        assertEquals(expectedLast, last);
+        assertEquals(expectedLast, last.getDecisionValue());
     }
 }
